@@ -6,8 +6,10 @@ import ChatPage from "./pages/ChatPage";
 function App() {
   return (
     <React.Fragment>
-      <Route path="/" component={HomePage} exact />
-      <Route path="/chats" component={ChatPage} />
+      <div className="App">
+        <Route path="/" component={HomePage} exact />
+        <Route path="/chats" component={ChatPage} />
+      </div>
     </React.Fragment>
   );
 }
