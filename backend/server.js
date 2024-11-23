@@ -2,17 +2,20 @@ import express from "express";
 import { chats } from "./db/chats.js";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
+import userRoutes from "./routes/userRoutes.js";
+import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
 const app = express();
 dotenv.config();
 connectDB();
 
+app.use(express.json());
+app.use("/api/user", userRoutes);
+app.use(notFound);
+app.use(errorHandler);
+
 app.get("/", (req, res) => {
   res.send("Hello World");
-});
-
-app.get("/api/chat", (req, res) => {
-  res.send(chats);
 });
 
 app.get("/api/chat/:id", (req, res) => {
